@@ -36,6 +36,12 @@
 		</constructor-arg>
 	</bean>
 
+	<bean id="partenaireDao" class="fr.humanbooster.enquetes.dao.impl.PartenaireDaoImpl">
+		<constructor-arg>
+			<ref bean="sessionFactory" />
+		</constructor-arg>
+	</bean>
+
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

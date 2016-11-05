@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * Created by Nea on 04/11/2016.
  */
@@ -23,9 +25,10 @@ public class EnqueteServiceImpl implements EnqueteService{
 
 
     @Override
-    public void creerEnquete(String name, String texteAccroche) {
+    public void creerEnqueteTel(String name, String texteAccroche, Date dateUtil) {
         Enquete enqueteTelephone = new EnqueteTelephone(texteAccroche);
         enqueteTelephone.setName(name);
+        enqueteTelephone.setDateEnquete(dateUtil);
         ed.creerEnquete(enqueteTelephone);
     }
 }

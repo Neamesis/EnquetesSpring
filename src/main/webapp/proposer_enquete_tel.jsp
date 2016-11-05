@@ -19,7 +19,8 @@
     <form:input path="texteAccroche" type="text" placeholder="Texte de l'accroche"/>
     <br> <br>
 
-    <input type="date" placeholder="AAAA/mm/JJ"/>
+    <label>Date de début d'enquête : </label>
+    <input type="date" name="DATE"/>
 
     <br> <br>
     <input type="submit" value="Valider" class="button"/>

@@ -1,8 +1,10 @@
 package fr.humanbooster.enquetes.service;
 
+import java.util.Date;
+
 /**
  * Created by Nea on 04/11/2016.
  */
 public interface EnqueteService {
-    public void creerEnquete(String name, String texteAccroche);
+    public void creerEnqueteTel(String name, String texteAccroche, Date dateUtil);
 }
