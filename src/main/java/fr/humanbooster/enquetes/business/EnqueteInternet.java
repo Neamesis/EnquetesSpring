@@ -32,4 +32,10 @@ public class EnqueteInternet extends Enquete {
         this.partenaires = partenaires;
     }
 
+    @Override
+    public String toString() {
+        return "EnqueteInternet{" +
+                "partenaires=" + partenaires +
+                '}';
+    }
 }

@@ -2,12 +2,14 @@ package fr.humanbooster.enquetes.controller;
 
 import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.EnqueteTelephone;
+import fr.humanbooster.enquetes.business.Partenaire;
 import fr.humanbooster.enquetes.service.EnqueteService;
 import fr.humanbooster.enquetes.service.PartenaireService;
 import fr.humanbooster.enquetes.service.QuestionService;
 import fr.humanbooster.enquetes.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,16 +76,28 @@ public class EnquetesControleur {
 
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.POST)
     public String creerEnquetIntPost(@RequestParam Map<String, Object> map,
-                                     @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet) {
+                                     @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet,
+                                     BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("Echec");
+            return "index";
+        } else {
+            String name = enqueteInternet.getName();
+            String dateString = map.get("DATE").toString();
+            System.out.println("nom enquête " + enqueteInternet.getName());
+            System.out.println("Partenaire obtenu : " + enqueteInternet.getPartenaires());
 
-        String name = enqueteInternet.getName();
-        String dateString =  map.get("DATE").toString();
+            /** TODO Régler le problème de checkboxes proposer_enquete_int.jsp, en attendant, ajout
+             * à la main de la liste des partenaires **/
+            List<Partenaire> partenaireList =partenaireService.recupererPartenaires();
 
-        return "index";
+            enqueteService.creerEnqueteInt(name, dateUtils.getDateFromString(dateString), partenaireList);
+            return "index";
+        }
     }
 
 
 
 
 
-}
+    }

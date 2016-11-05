@@ -10,17 +10,7 @@
 
 <h1>Proposer une enquête internet</h1>
 
-<a href="/EnquetesSpring/genererPartenaires">Générer une liste de partenaires</a>
-<p>Partenaires : </p>
-<ul>
-    <c:forEach items="${partenaires}" var="partenaire">
-        <li>
-            <c:out value="${partenaire.namePartenaire}"/>
-            <c:out value="${partenaire.siteWebPartenaire}"/>
-        </li>
-    </c:forEach>
-</ul>
-
+<a href="/EnquetesSpring/genererPartenaires">Générer une liste de partenaires (à utiliser avec parcimonie...)</a>
 
 <form:form modelAttribute="enqueteInternet" action="creerEnqueteInt" method="POST">
     <label>Nom de l'enquête : </label>
@@ -28,18 +18,37 @@
     <form:input path="name" type="text" placeholder="Nom de l'enquête"/>
     <br> <br>
 
-    <label>Texte d'accroche : </label>
+    <label>Date de début d'enquête : </label>
     <br>
-
-    <br> <br>
-
     <input type="date" name="DATE"/>
     <br> <br>
 
+    <label>Choisissez le ou les partenaire(s) pour cette enquête : </label> <br>
+<%--    <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
+        <tr>
+            <td>${partenaire.namePartenaire}</td>
+            <td>
+                <form:checkbox path="partenaires"/>
+            </td>
+        </tr>
+
+    </c:forEach>--%>
+
+    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire" delimiter="<br/>"/>
+
+    <br> <br>
     <input type="submit" value="Valider" class="button"/>
 </form:form>
 
-<!-- TODO Afficher liste des partenaires et pouvoir en choisir -->
+<p>Liste des partenaires et leur site : </p>
+<ul>
+    <c:forEach items="${partenaires}" var="partenaire">
+        <li>
+            <c:out value="Nom : ${partenaire.namePartenaire}"/> <br>
+            <c:out value="Site : ${partenaire.siteWebPartenaire}"/>
+        </li>
+    </c:forEach>
+</ul>
 
 </body>
 </html>

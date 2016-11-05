@@ -20,6 +20,7 @@
     <br> <br>
 
     <label>Date de début d'enquête : </label>
+    <br>
     <input type="date" name="DATE"/>
 
     <br> <br>

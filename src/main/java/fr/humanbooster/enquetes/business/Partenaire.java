@@ -62,4 +62,13 @@ public class Partenaire implements Serializable{
     public void setEnqueteInternet(EnqueteInternet enqueteInternet) {
         this.enqueteInternet = enqueteInternet;
     }
+
+    @Override
+    public String toString() {
+        return "Partenaire{" +
+                "idPartenaire=" + idPartenaire +
+                ", namePartenaire='" + namePartenaire + '\'' +
+                ", siteWebPartenaire='" + siteWebPartenaire + '\'' +
+                '}';
+    }
 }
