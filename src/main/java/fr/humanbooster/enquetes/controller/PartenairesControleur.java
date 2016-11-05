@@ -22,16 +22,10 @@ public class PartenairesControleur {
     @Autowired
     private HttpSession hSession;
 
-    @RequestMapping(value = "/proposer_enquete_int", method = RequestMethod.GET)
-    public ModelAndView enqueteIntGet(Map<String, Object> map) {
-        map.put("partenaires", partenaireService.recupererPartenaires());
-        return new ModelAndView("proposer_enquete_int", map);
-    }
-
     @RequestMapping(value = "/genererPartenaires", method = RequestMethod.GET)
-    public ModelAndView creerPartenaires(){
+    public String creerPartenaires(){
         partenaireService.genererListePartenaires();
-        return new ModelAndView("proposer_enquete_int", null);
+        return "partenaires_generes";
     }
 
 

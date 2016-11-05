@@ -3,6 +3,7 @@ package fr.humanbooster.enquetes.controller;
 import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.EnqueteTelephone;
 import fr.humanbooster.enquetes.service.EnqueteService;
+import fr.humanbooster.enquetes.service.PartenaireService;
 import fr.humanbooster.enquetes.service.QuestionService;
 import fr.humanbooster.enquetes.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class EnquetesControleur {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private PartenaireService partenaireService;
 
     @Autowired
     private HttpSession hSession;
@@ -61,6 +65,7 @@ public class EnquetesControleur {
     public ModelAndView creerEnquetIntGet(Map<String, Object> map,
                                           @ModelAttribute("enqueteInternet")EnqueteInternet enqueteInternet) {
         map.put("enqueteInternet", new EnqueteInternet());
+        map.put("partenaires", partenaireService.recupererPartenaires());
         return new ModelAndView("proposer_enquete_int", map);
     }
 
