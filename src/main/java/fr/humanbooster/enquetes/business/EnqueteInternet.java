@@ -1,6 +1,7 @@
 package fr.humanbooster.enquetes.business;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +14,7 @@ public class EnqueteInternet extends Enquete {
 
     private static final long serialVersionUID = 1L;
 
-    @OneToMany(mappedBy = "enqueteInternet")
+    @OneToMany(mappedBy = "enqueteInternet", fetch = FetchType.EAGER)
     private List<Partenaire> partenaires;
 
     public EnqueteInternet() {

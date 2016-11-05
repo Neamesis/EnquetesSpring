@@ -11,17 +11,17 @@
 <form:form modelAttribute="enqueteTelephone" action="creerEnqueteTel" method="POST">
     <label>Nom de l'enquête : </label>
     <br>
-    <form:input path="name" type="text" placeholder="Nom de l'enquête"/>
+    <form:input path="name" type="text" placeholder="Nom de l'enquête" required="true"/>
     <br> <br>
 
     <label>Texte d'accroche : </label>
     <br>
-    <form:input path="texteAccroche" type="text" placeholder="Texte de l'accroche"/>
+    <form:input path="texteAccroche" type="text" placeholder="Texte de l'accroche" required="true"/>
     <br> <br>
 
     <label>Date de début d'enquête : </label>
     <br>
-    <input type="date" name="DATE"/>
+    <input type="date" name="DATE" required="true"/>
 
     <br> <br>
     <input type="submit" value="Valider" class="button"/>

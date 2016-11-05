@@ -42,4 +42,10 @@ public class EnqueteServiceImpl implements EnqueteService{
         enqueteInternet.setDateEnquete(dateUtil);
         ed.creerEnquete(enqueteInternet);
     }
+
+    @Override
+    public List<Enquete> recupererEnquetes() {
+        List<Enquete> enquetes = ed.recupererEnquetes();
+        return enquetes;
+    }
 }

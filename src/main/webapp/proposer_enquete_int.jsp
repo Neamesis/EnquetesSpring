@@ -15,12 +15,12 @@
 <form:form modelAttribute="enqueteInternet" action="creerEnqueteInt" method="POST">
     <label>Nom de l'enquête : </label>
     <br>
-    <form:input path="name" type="text" placeholder="Nom de l'enquête"/>
+    <form:input path="name" type="text" placeholder="Nom de l'enquête" required="true"/>
     <br> <br>
 
     <label>Date de début d'enquête : </label>
     <br>
-    <input type="date" name="DATE"/>
+    <input type="date" name="DATE" required="true"/>
     <br> <br>
 
     <label>Choisissez le ou les partenaire(s) pour cette enquête : </label> <br>

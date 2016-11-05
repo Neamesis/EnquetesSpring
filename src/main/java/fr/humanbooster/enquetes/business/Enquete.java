@@ -77,4 +77,12 @@ public  abstract class Enquete implements Serializable {
         this.criteres = criteres;
     }
 
+    @Override
+    public String toString() {
+        return "Enquete{" +
+                "idEnquete=" + idEnquete +
+                ", name='" + name + '\'' +
+                ", dateEnquete=" + dateEnquete +
+                '}';
+    }
 }

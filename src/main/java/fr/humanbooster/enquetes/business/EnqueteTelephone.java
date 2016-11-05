@@ -32,4 +32,11 @@ public class EnqueteTelephone extends Enquete {
     public void setTexteAccroche(String texteAccroche) {
         this.texteAccroche = texteAccroche;
     }
+
+    @Override
+    public String toString() {
+        return "EnqueteTelephone{" +
+                "texteAccroche='" + texteAccroche + '\'' +
+                '}';
+    }
 }

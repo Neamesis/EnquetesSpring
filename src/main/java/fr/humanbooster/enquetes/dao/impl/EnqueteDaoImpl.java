@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by Nea on 04/11/2016.
  */
@@ -27,5 +29,11 @@ public class EnqueteDaoImpl implements EnqueteDao{
     @Override
     public void creerEnquete(Enquete enqueteTelephone) {
         sf.getCurrentSession().save(enqueteTelephone);
+    }
+
+    @Override
+    public List<Enquete> recupererEnquetes() {
+        List<Enquete> enquetes = sf.getCurrentSession().createQuery("FROM Enquete").getResultList();
+        return enquetes;
     }
 }

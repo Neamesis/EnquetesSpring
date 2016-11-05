@@ -9,6 +9,7 @@ import fr.humanbooster.enquetes.service.QuestionService;
 import fr.humanbooster.enquetes.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,8 +44,11 @@ public class EnquetesControleur {
 
     private DateUtils dateUtils = new DateUtils();
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index() {
+    @RequestMapping(value = "/index")
+    public String pageAccueil(Map<String, Object> map) {
+        System.out.println("coucou ??");
+        map.put("enquetes", enqueteService.recupererEnquetes());
+        System.out.println("-------------- map "+ map);
         return "index";
     }
 
@@ -63,7 +68,10 @@ public class EnquetesControleur {
         String dateString =  map.get("DATE").toString();
 
         enqueteService.creerEnqueteTel(name, texteAccroche, dateUtils.getDateFromString(dateString));
-        return "index";
+
+        // Redirection vers la page d'accueil
+        map.put("enquetes", enqueteService.recupererEnquetes());
+        return pageAccueil(map);
     }
 
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.GET)
