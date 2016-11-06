@@ -27,8 +27,9 @@ public class EnqueteDaoImpl implements EnqueteDao{
 
 
     @Override
-    public void creerEnquete(Enquete enqueteTelephone) {
-        sf.getCurrentSession().save(enqueteTelephone);
+    public int creerEnquete(Enquete enquete) {
+        sf.getCurrentSession().save(enquete);
+        return enquete.getIdEnquete();
     }
 
     @Override
@@ -36,4 +37,7 @@ public class EnqueteDaoImpl implements EnqueteDao{
         List<Enquete> enquetes = sf.getCurrentSession().createQuery("FROM Enquete").getResultList();
         return enquetes;
     }
+
+
+
 }

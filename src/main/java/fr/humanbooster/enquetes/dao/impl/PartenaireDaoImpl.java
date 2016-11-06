@@ -37,4 +37,14 @@ public class PartenaireDaoImpl  implements PartenaireDao{
         List<Partenaire> partenaires = sf.getCurrentSession().createQuery("FROM Partenaire").getResultList();
         return partenaires;
     }
+
+    @Override
+    public Partenaire recupererPartenaireParId(int id) {
+        return sf.getCurrentSession().byId(Partenaire.class).load(id);
+    }
+
+    @Override
+    public void creerPartenaire(Partenaire partenaire) {
+        sf.getCurrentSession().save(partenaire);
+    }
 }

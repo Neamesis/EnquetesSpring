@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface EnqueteDao {
 
-    public void creerEnquete(Enquete enqueteTelephone);
+    public int creerEnquete(Enquete enqueteTelephone);
 
     public List<Enquete> recupererEnquetes();
 }

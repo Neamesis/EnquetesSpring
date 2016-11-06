@@ -12,8 +12,9 @@
 
 <a href="/EnquetesSpring/genererPartenaires">Générer une liste de partenaires (à utiliser avec parcimonie...)</a>
 
-<form:form modelAttribute="enqueteInternet" action="creerEnqueteInt" method="POST">
-    <label>Nom de l'enquête : </label>
+<%--<form:form modelAttribute="enqueteInternet" action="creerEnqueteInt" method="POST">--%>
+<form:form method="POST" modelAttribute="enqueteInternet" action="creerEnqueteInt">
+<label>Nom de l'enquête : </label>
     <br>
     <form:input path="name" type="text" placeholder="Nom de l'enquête" required="true"/>
     <br> <br>
@@ -23,32 +24,29 @@
     <input type="date" name="DATE" required="true"/>
     <br> <br>
 
-    <label>Choisissez le ou les partenaire(s) pour cette enquête : </label> <br>
-<%--    <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
+    <label>
+        <p>Choisissez un partenaire à ajouter à votre enquête :</p>
+        <p>(Attention, vous ne pouvez choisir qu'un partenaire à la fois)</p>
+    </label>
+    <br>
+    <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
         <tr>
-            <td>${partenaire.namePartenaire}</td>
             <td>
-                <form:checkbox path="partenaires"/>
+                <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}" required="required"/>
             </td>
+            <td>${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</td>
+            <br>
         </tr>
-
-    </c:forEach>--%>
-
-    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire" delimiter="<br/>" itemValue="idPartenaire"/>
-
-    <br> <br>
+    </c:forEach>
+<%--    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire"
+                     delimiter="<br/>" itemValue="idPartenaire"/>--%>
+    <br>
+    <p>Votre partenaire ne se trouve pas dans la liste ?
+        <a href="/EnquetesSpring/creerPartenaire"> Ajouter un partenaire</a>
+    </p>
+    <br>
     <input type="submit" value="Valider" class="button"/>
 </form:form>
-
-<p>Liste des partenaires et leur site : </p>
-<ul>
-    <c:forEach items="${partenaires}" var="partenaire">
-        <li>
-            <c:out value="Nom : ${partenaire.namePartenaire}"/> <br>
-            <c:out value="Site : ${partenaire.siteWebPartenaire}"/>
-        </li>
-    </c:forEach>
-</ul>
 
 </body>
 </html>

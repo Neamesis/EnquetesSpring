@@ -11,4 +11,8 @@ public interface PartenaireService {
     public void genererListePartenaires();
 
     public List<Partenaire> recupererPartenaires();
+
+    public Partenaire recupererPartenaireParId(String id);
+
+    public void creerPartenaire(String namePartenaire, String siteWeb);
 }

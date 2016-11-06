@@ -10,9 +10,9 @@ import java.util.List;
  * Created by Nea on 04/11/2016.
  */
 public interface EnqueteService {
-    public void creerEnqueteTel(String name, String texteAccroche, Date dateUtil);
+    public int creerEnqueteTel(String name, String texteAccroche, Date dateUtil);
 
-    public void creerEnqueteInt(String name, Date dateUtil, List<Partenaire> partenaireList);
+    public int creerEnqueteInt(String name, Date dateUtil);
 
     public List<Enquete> recupererEnquetes();
 }

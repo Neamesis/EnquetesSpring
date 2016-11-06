@@ -37,4 +37,21 @@ public class PartenaireServiceImpl implements PartenaireService {
         List<Partenaire> partenaires = pd.recupererPartenaires();
         return partenaires;
     }
+
+    @Override
+    public Partenaire recupererPartenaireParId(String id) {
+        if (id == null) {
+            return null;
+        } else {
+            Partenaire partenaire = pd.recupererPartenaireParId(Integer.parseInt(id));
+            return partenaire;
+        }
+
+    }
+
+    @Override
+    public void creerPartenaire(String namePartenaire, String siteWeb) {
+        Partenaire partenaire = new Partenaire(namePartenaire, siteWeb);
+        pd.creerPartenaire(partenaire);
+    }
 }

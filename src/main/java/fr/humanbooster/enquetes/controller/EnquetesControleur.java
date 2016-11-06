@@ -10,6 +10,7 @@ import fr.humanbooster.enquetes.service.QuestionService;
 import fr.humanbooster.enquetes.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -77,12 +78,15 @@ public class EnquetesControleur {
         return pageAccueil(map);
     }
 
+
+
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.GET)
-    public ModelAndView creerEnquetIntGet(Map<String, Object> map,
-                                          @ModelAttribute("enqueteInternet")EnqueteInternet enqueteInternet) {
-        map.put("enqueteInternet", new EnqueteInternet());
-        map.put("partenaires", partenaireService.recupererPartenaires());
-        return new ModelAndView("proposer_enquete_int", map);
+    public ModelAndView creerEnqueteIntGet() {
+        ModelAndView mav = new ModelAndView("proposer_enquete_int");
+        List<Partenaire> partenaires = partenaireService.recupererPartenaires();
+        mav.addObject("partenaires", partenaires);
+        mav.addObject("enqueteInternet", new EnqueteInternet());
+        return mav;
     }
 
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.POST)
@@ -90,19 +94,24 @@ public class EnquetesControleur {
                                      @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet,
                                      BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println("Echec");
+            System.out.println(">>>> Echec");
             return pageAccueil(map);
         } else {
             String name = enqueteInternet.getName();
             String dateString = map.get("DATE").toString();
-            System.out.println("nom enquête " + enqueteInternet.getName());
-            System.out.println("Partenaire obtenu : " + enqueteInternet.getPartenaires());
+            String id = map.get("ID_PARTENAIRE").toString();
 
-            /** TODO Régler le problème de checkboxes proposer_enquete_int.jsp, en attendant, ajout
-             * à la main de la liste des partenaires **/
-            List<Partenaire> partenaireList =partenaireService.recupererPartenaires();
+            Partenaire partenaire = partenaireService.recupererPartenaireParId(id);
 
-            enqueteService.creerEnqueteInt(name, dateUtils.getDateFromString(dateString), partenaireList);
+            System.out.println("id de l'enquete : " + enqueteInternet.getIdEnquete());
+
+            List<Partenaire> partenaireList = new ArrayList<>();
+            partenaireList.add(partenaire);
+
+            int idEnquete = enqueteService.creerEnqueteInt(name, dateUtils.getDateFromString(dateString));
+
+
+            System.out.println("id de l'enquete : " + idEnquete);
 
             return pageAccueil(map);
         }
