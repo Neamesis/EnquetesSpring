@@ -78,8 +78,6 @@ public class EnquetesControleur {
         return pageAccueil(map);
     }
 
-
-
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.GET)
     public ModelAndView creerEnqueteIntGet() {
         ModelAndView mav = new ModelAndView("proposer_enquete_int");
@@ -108,6 +106,28 @@ public class EnquetesControleur {
             partenaireService.attribuerEnqueteAuPartenaire(partenaire, enqueteAjoutee);
             return pageAccueil(map);
         }
+    }
+
+    @RequestMapping(value = "/ajoutPartEnquInt", method = RequestMethod.GET)
+    public ModelAndView ajoutPartenaireEnqueteIntGet(@RequestParam(name = "id") String idEnquete,
+                                                     Map<String, Object> map) {
+        ModelAndView mav = new ModelAndView("ajout_partenaire_enquete_int");
+        EnqueteInternet enqueteInternet = enqueteService.recupererEnqueteIntParId(Integer.parseInt(idEnquete));
+        mav.addObject("enqueteInternet", enqueteInternet);
+        mav.addObject("partenaires", partenaireService.recupererPartenaires());
+        return mav;
+    }
+
+    @RequestMapping(value = "/ajoutPartEnquInt", method = RequestMethod.POST)
+    public ModelAndView ajoutPartenaireEnqueteIntPost(@RequestParam Map<String, Object> map,
+                                                      @ModelAttribute("partenaire") Partenaire partenaire,
+                                                      @RequestParam(name = "ID_ENQUETE") String idEnquete) {
+
+        EnqueteInternet enqueteInternet = enqueteService.recupererEnqueteIntParId(Integer.parseInt(idEnquete));
+        String idPartenaire = map.get("ID_PARTENAIRE").toString();
+        partenaire = partenaireService.recupererPartenaireParId(idPartenaire);
+        partenaireService.attribuerEnqueteAuPartenaire(partenaire, enqueteInternet);
+        return pageAccueil(map);
     }
 
 

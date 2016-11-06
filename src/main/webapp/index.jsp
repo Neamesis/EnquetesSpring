@@ -18,7 +18,6 @@
 <a href="/EnquetesSpring/index">Récupérer les enquêtes</a>
 <br><br>
 <c:forEach items="${enquetes}" var="enquete">
-    ${enquete}
     <p> Nom : ${enquete.name}</p>
     <p> Date : ${enquete.dateEnquete}</p>
      <c:if test="${enquete['class'].simpleName == 'EnqueteTelephone'}">
@@ -26,6 +25,10 @@
     </c:if>
     <c:if test="${enquete['class'].simpleName == 'EnqueteInternet'}">
         <p> Liste des partenaires : ${enquete.partenaires}</p>
+        <br>
+        <a href="ajoutPartEnquInt?id=${enquete.idEnquete}" >
+            Ajouter un partenaire à l'enquête n°${enquete.idEnquete}
+        </a>
     </c:if>
     <br><br>
 </c:forEach>
