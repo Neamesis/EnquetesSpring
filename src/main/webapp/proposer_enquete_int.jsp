@@ -30,13 +30,15 @@
     </label>
     <br>
     <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
-        <tr>
-            <td>
-                <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}" required="required"/>
-            </td>
-            <td>${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</td>
-            <br>
-        </tr>
+        <c:if test="${partenaire.enqueteInternet == null}">
+            <tr>
+                <td>
+                    <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}" required="required"/>
+                </td>
+                <td>${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</td>
+                <br>
+            </tr>
+        </c:if>
     </c:forEach>
     <%--    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire"
                          delimiter="<br/>" itemValue="idPartenaire"/>--%>
