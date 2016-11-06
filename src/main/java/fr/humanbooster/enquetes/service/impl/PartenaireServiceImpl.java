@@ -1,5 +1,6 @@
 package fr.humanbooster.enquetes.service.impl;
 
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.Partenaire;
 import fr.humanbooster.enquetes.dao.PartenaireDao;
 import fr.humanbooster.enquetes.service.PartenaireService;
@@ -54,4 +55,11 @@ public class PartenaireServiceImpl implements PartenaireService {
         Partenaire partenaire = new Partenaire(namePartenaire, siteWeb);
         pd.creerPartenaire(partenaire);
     }
+
+    @Override
+    public void attribuerEnqueteAuPartenaire(Partenaire partenaire, EnqueteInternet enquete) {
+        pd.attribuerEnqueteAuPartenaire(partenaire, enquete);
+    }
+
+
 }

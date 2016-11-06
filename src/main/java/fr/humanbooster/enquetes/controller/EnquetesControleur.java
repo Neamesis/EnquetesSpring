@@ -99,20 +99,13 @@ public class EnquetesControleur {
         } else {
             String name = enqueteInternet.getName();
             String dateString = map.get("DATE").toString();
-            String id = map.get("ID_PARTENAIRE").toString();
-
-            Partenaire partenaire = partenaireService.recupererPartenaireParId(id);
-
-            System.out.println("id de l'enquete : " + enqueteInternet.getIdEnquete());
-
-            List<Partenaire> partenaireList = new ArrayList<>();
-            partenaireList.add(partenaire);
+            String idPartenaire = map.get("ID_PARTENAIRE").toString();
 
             int idEnquete = enqueteService.creerEnqueteInt(name, dateUtils.getDateFromString(dateString));
+            EnqueteInternet enqueteAjoutee = enqueteService.recupererEnqueteIntParId(idEnquete);
 
-
-            System.out.println("id de l'enquete : " + idEnquete);
-
+            Partenaire partenaire = partenaireService.recupererPartenaireParId(idPartenaire);
+            partenaireService.attribuerEnqueteAuPartenaire(partenaire, enqueteAjoutee);
             return pageAccueil(map);
         }
     }

@@ -49,4 +49,17 @@ public class EnqueteServiceImpl implements EnqueteService{
         List<Enquete> enquetes = ed.recupererEnquetes();
         return enquetes;
     }
+
+    @Override
+    public EnqueteInternet recupererEnqueteIntParId(int idEnquete) {
+        if (idEnquete == 0) {
+            return null;
+        } else {
+            EnqueteInternet enqueteInternet = ed.recupererEnqueteParId(idEnquete);
+            return enqueteInternet;
+        }
+
+    }
+
+
 }

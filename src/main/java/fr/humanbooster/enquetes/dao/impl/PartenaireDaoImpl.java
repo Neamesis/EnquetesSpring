@@ -1,5 +1,6 @@
 package fr.humanbooster.enquetes.dao.impl;
 
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.Partenaire;
 import fr.humanbooster.enquetes.dao.PartenaireDao;
 import org.hibernate.SessionFactory;
@@ -46,5 +47,11 @@ public class PartenaireDaoImpl  implements PartenaireDao{
     @Override
     public void creerPartenaire(Partenaire partenaire) {
         sf.getCurrentSession().save(partenaire);
+    }
+
+    @Override
+    public void attribuerEnqueteAuPartenaire(Partenaire partenaire, EnqueteInternet enquete) {
+        partenaire.setEnqueteInternet(enquete);
+        sf.getCurrentSession().saveOrUpdate(partenaire);
     }
 }

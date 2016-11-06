@@ -1,6 +1,7 @@
 package fr.humanbooster.enquetes.dao;
 
 import fr.humanbooster.enquetes.business.Enquete;
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface EnqueteDao {
     public int creerEnquete(Enquete enqueteTelephone);
 
     public List<Enquete> recupererEnquetes();
+
+    public EnqueteInternet recupererEnqueteParId(int idEnquete);
 }

@@ -1,6 +1,7 @@
 package fr.humanbooster.enquetes.dao.impl;
 
 import fr.humanbooster.enquetes.business.Enquete;
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.dao.EnqueteDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,10 @@ public class EnqueteDaoImpl implements EnqueteDao{
         return enquetes;
     }
 
+    @Override
+    public EnqueteInternet recupererEnqueteParId(int idEnquete) {
+        return sf.getCurrentSession().byId(EnqueteInternet.class).load(idEnquete);
+    }
 
 
 }

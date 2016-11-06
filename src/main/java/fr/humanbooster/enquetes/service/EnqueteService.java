@@ -1,6 +1,7 @@
 package fr.humanbooster.enquetes.service;
 
 import fr.humanbooster.enquetes.business.Enquete;
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.Partenaire;
 
 import java.util.Date;
@@ -15,4 +16,6 @@ public interface EnqueteService {
     public int creerEnqueteInt(String name, Date dateUtil);
 
     public List<Enquete> recupererEnquetes();
+
+    public EnqueteInternet recupererEnqueteIntParId(int idEnquete);
 }

@@ -1,5 +1,6 @@
 package fr.humanbooster.enquetes.service;
 
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.Partenaire;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface PartenaireService {
     public Partenaire recupererPartenaireParId(String id);
 
     public void creerPartenaire(String namePartenaire, String siteWeb);
+
+    public void attribuerEnqueteAuPartenaire(Partenaire partenaire, EnqueteInternet enquete);
 }

@@ -1,5 +1,6 @@
 package fr.humanbooster.enquetes.dao;
 
+import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.Partenaire;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface PartenaireDao {
     public Partenaire recupererPartenaireParId(int id);
 
     public void creerPartenaire(Partenaire partenaire);
+
+    public void attribuerEnqueteAuPartenaire(Partenaire partenaire, EnqueteInternet enquete);
 }

@@ -11,10 +11,10 @@
 <h1>Proposer une enquête internet</h1>
 
 <a href="/EnquetesSpring/genererPartenaires">Générer une liste de partenaires (à utiliser avec parcimonie...)</a>
+<br>
 
-<%--<form:form modelAttribute="enqueteInternet" action="creerEnqueteInt" method="POST">--%>
 <form:form method="POST" modelAttribute="enqueteInternet" action="creerEnqueteInt">
-<label>Nom de l'enquête : </label>
+    <label>Nom de l'enquête : </label>
     <br>
     <form:input path="name" type="text" placeholder="Nom de l'enquête" required="true"/>
     <br> <br>
@@ -38,8 +38,8 @@
             <br>
         </tr>
     </c:forEach>
-<%--    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire"
-                     delimiter="<br/>" itemValue="idPartenaire"/>--%>
+    <%--    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire"
+                         delimiter="<br/>" itemValue="idPartenaire"/>--%>
     <br>
     <p>Votre partenaire ne se trouve pas dans la liste ?
         <a href="/EnquetesSpring/creerPartenaire"> Ajouter un partenaire</a>
