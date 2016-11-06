@@ -11,16 +11,29 @@
 <br>
 <a href="/EnquetesSpring/creerEnqueteInt">Proposer une enquête internet</a>
 
+<p>Nombre d'enquêtes : ${enquetes.size()}</p>
+
 <p>Liste des enquêtes : </p>
-<ul>
-    <c:forEach items="${enquetes}" var="enquete">
-        <li>
-            <c:out value="Nom :  ${enquete.name}"/> <br>
-            <c:out value="Date : ${enquete.dateEnquete}"/>
-        </li>
-    </c:forEach>
-</ul>
+
+<a href="/EnquetesSpring/index">Récupérer les enquêtes</a>
+<br><br>
+<c:forEach items="${enquetes}" var="enquete">
+    ${enquete}
+    <p> Nom : ${enquete.name}</p>
+    <p> Date : ${enquete.dateEnquete}</p>
+     <c:if test="${enquete['class'].simpleName == 'EnqueteTelephone'}">
+        <p> Texte d'accroche : ${enquete.texteAccroche}</p>
+    </c:if>
+    <c:if test="${enquete['class'].simpleName == 'EnqueteInternet'}">
+        <p> Liste des partenaires : ${enquete.partenaires}</p>
+    </c:if>
+    <br><br>
+</c:forEach>
 
 
+<%--<a id="loadListEnquetes" href="/EnquetesSpring/index" style="display: none"></a>
+<script type="text/javascript">
+    document.getElementById("loadListEnquetes").click()
+</script>--%>
 </body>
 </html>

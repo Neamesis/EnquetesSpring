@@ -1,5 +1,6 @@
 package fr.humanbooster.enquetes.controller;
 
+import fr.humanbooster.enquetes.business.Enquete;
 import fr.humanbooster.enquetes.business.EnqueteInternet;
 import fr.humanbooster.enquetes.business.EnqueteTelephone;
 import fr.humanbooster.enquetes.business.Partenaire;
@@ -44,12 +45,16 @@ public class EnquetesControleur {
 
     private DateUtils dateUtils = new DateUtils();
 
-    @RequestMapping(value = "/index")
-    public String pageAccueil(Map<String, Object> map) {
-        System.out.println("coucou ??");
+    /**
+     * Mapping de plusieurs root sur index
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = {"","/","/index"}, method = RequestMethod.GET)
+    public ModelAndView pageAccueil(Map<String, Object> map) {
+        List<Enquete> enquetes = enqueteService.recupererEnquetes();
         map.put("enquetes", enqueteService.recupererEnquetes());
-        System.out.println("-------------- map "+ map);
-        return "index";
+        return new ModelAndView("index", map);
     }
 
     @RequestMapping(value = "/creerEnqueteTel", method = RequestMethod.GET)
@@ -60,7 +65,7 @@ public class EnquetesControleur {
     }
 
     @RequestMapping(value = "/creerEnqueteTel", method = RequestMethod.POST)
-    public String creerEnqueteTelPost(@ModelAttribute("enqueteTelephone") EnqueteTelephone enqueteTelephone,
+    public ModelAndView creerEnqueteTelPost(@ModelAttribute("enqueteTelephone") EnqueteTelephone enqueteTelephone,
                                       @RequestParam Map<String, Object> map) {
 
         String name = enqueteTelephone.getName();
@@ -69,8 +74,6 @@ public class EnquetesControleur {
 
         enqueteService.creerEnqueteTel(name, texteAccroche, dateUtils.getDateFromString(dateString));
 
-        // Redirection vers la page d'accueil
-        map.put("enquetes", enqueteService.recupererEnquetes());
         return pageAccueil(map);
     }
 
@@ -83,12 +86,12 @@ public class EnquetesControleur {
     }
 
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.POST)
-    public String creerEnquetIntPost(@RequestParam Map<String, Object> map,
+    public ModelAndView creerEnquetIntPost(@RequestParam Map<String, Object> map,
                                      @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet,
                                      BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("Echec");
-            return "index";
+            return pageAccueil(map);
         } else {
             String name = enqueteInternet.getName();
             String dateString = map.get("DATE").toString();
@@ -100,7 +103,8 @@ public class EnquetesControleur {
             List<Partenaire> partenaireList =partenaireService.recupererPartenaires();
 
             enqueteService.creerEnqueteInt(name, dateUtils.getDateFromString(dateString), partenaireList);
-            return "index";
+
+            return pageAccueil(map);
         }
     }
 

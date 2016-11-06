@@ -35,8 +35,10 @@ public class EnqueteInternet extends Enquete {
 
     @Override
     public String toString() {
-        return "EnqueteInternet{" +
-                "partenaires=" + partenaires +
-                '}';
+        return "EnqueteInternet : " +
+                "Nom : " + super.getName() + " " +
+                "Date : " + super.getDateEnquete() + " " +
+                "partenaires : " + partenaires +
+                '.';
     }
 }

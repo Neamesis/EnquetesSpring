@@ -34,7 +34,7 @@
 
     </c:forEach>--%>
 
-    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire" delimiter="<br/>"/>
+    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire" delimiter="<br/>" itemValue="idPartenaire"/>
 
     <br> <br>
     <input type="submit" value="Valider" class="button"/>

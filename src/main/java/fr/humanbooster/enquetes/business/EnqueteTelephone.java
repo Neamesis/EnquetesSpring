@@ -35,8 +35,10 @@ public class EnqueteTelephone extends Enquete {
 
     @Override
     public String toString() {
-        return "EnqueteTelephone{" +
-                "texteAccroche='" + texteAccroche + '\'' +
-                '}';
+        return "EnqueteTelephone : " +
+                "Nom  : " + super.getName() + " " +
+                "Date : " + super.getDateEnquete() + " " +
+                "Texte d'accroche= : ' " + texteAccroche + " '" +
+                '.';
     }
 }
