@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,10 @@ import java.util.Map;
  */
 @Controller
 public class EnquetesControleur {
+
+    public static final int TRI_PAR_DEFAUT = 0;
+    public static final int TRI_PAR_NOM = 1;
+    public static final int TRI_PAR_DATE = 2;
 
     @Autowired
     private EnqueteService enqueteService;
@@ -53,8 +59,7 @@ public class EnquetesControleur {
      */
     @RequestMapping(value = {"","/","/index"}, method = RequestMethod.GET)
     public ModelAndView pageAccueil(Map<String, Object> map) {
-        List<Enquete> enquetes = enqueteService.recupererEnquetes();
-        map.put("enquetes", enqueteService.recupererEnquetes());
+        map.put("enquetes", enqueteService.recupererEnquetesTriees(TRI_PAR_DEFAUT));
         return new ModelAndView("index", map);
     }
 
@@ -67,7 +72,7 @@ public class EnquetesControleur {
 
     @RequestMapping(value = "/creerEnqueteTel", method = RequestMethod.POST)
     public ModelAndView creerEnqueteTelPost(@ModelAttribute("enqueteTelephone") EnqueteTelephone enqueteTelephone,
-                                      @RequestParam Map<String, Object> map) {
+                                            @RequestParam Map<String, Object> map) {
 
         String name = enqueteTelephone.getName();
         String texteAccroche = enqueteTelephone.getTexteAccroche();
@@ -89,8 +94,8 @@ public class EnquetesControleur {
 
     @RequestMapping(value = "/creerEnqueteInt", method = RequestMethod.POST)
     public ModelAndView creerEnquetIntPost(@RequestParam Map<String, Object> map,
-                                     @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet,
-                                     BindingResult result) {
+                                           @ModelAttribute("enqueteInternet") EnqueteInternet enqueteInternet,
+                                           BindingResult result) {
         if (result.hasErrors()) {
             System.out.println(">>>> Echec");
             return pageAccueil(map);
@@ -131,7 +136,31 @@ public class EnquetesControleur {
     }
 
 
+    @RequestMapping(value = "/departement", method = RequestMethod.GET)
+    public ModelAndView ajoutDepartement() {
+        ModelAndView mav = new ModelAndView("ajouter_departement");
 
-
-
+        Map<String, String> departements = new HashMap<>();
+        for (int i = 1 ; i < 96 ; i++) {
+            departements.put(String.valueOf(i), String.valueOf(i));
+        }
+        mav.addObject("departements", departements);
+        return mav;
     }
+
+    @RequestMapping(value = "/triEnquetesParDate", method = RequestMethod.GET)
+    public ModelAndView triEnquetesParDate(Map<String, Object> map) {
+        map.put("enquetes", enqueteService.recupererEnquetesTriees(TRI_PAR_DATE));
+        return new ModelAndView("index", map);
+    }
+
+    @RequestMapping(value = "/triEnquetesParNom", method = RequestMethod.GET)
+    public ModelAndView triEnquetesParNom(Map<String, Object> map) {
+        map.put("enquetes", enqueteService.recupererEnquetesTriees(TRI_PAR_NOM));
+        return new ModelAndView("index", map);
+    }
+
+
+
+
+}

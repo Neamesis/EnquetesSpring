@@ -44,5 +44,17 @@ public class EnqueteDaoImpl implements EnqueteDao{
         return sf.getCurrentSession().byId(EnqueteInternet.class).load(idEnquete);
     }
 
+    @Override
+    public List<Enquete> trierEnquetesParNom() {
+        List<Enquete> enquetes = sf.getCurrentSession().createQuery("FROM Enquete ORDER BY name").getResultList();
+        return enquetes;
+    }
+
+    @Override
+    public List<Enquete> trierEnquetesParDate() {
+        List<Enquete> enquetes = sf.getCurrentSession().createQuery("FROM Enquete ORDER BY dateEnquete").getResultList();
+        return enquetes;
+    }
+
 
 }

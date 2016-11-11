@@ -45,12 +45,6 @@ public class EnqueteServiceImpl implements EnqueteService{
     }
 
     @Override
-    public List<Enquete> recupererEnquetes() {
-        List<Enquete> enquetes = ed.recupererEnquetes();
-        return enquetes;
-    }
-
-    @Override
     public EnqueteInternet recupererEnqueteIntParId(int idEnquete) {
         if (idEnquete == 0) {
             return null;
@@ -58,8 +52,23 @@ public class EnqueteServiceImpl implements EnqueteService{
             EnqueteInternet enqueteInternet = ed.recupererEnqueteParId(idEnquete);
             return enqueteInternet;
         }
-
     }
+
+    @Override
+    public List<Enquete> recupererEnquetesTriees(int orderBy) {
+        List<Enquete> enquetes = new ArrayList<>();
+        switch (orderBy) {
+            case 0:
+                return enquetes = ed.recupererEnquetes();
+            case 1:
+                return enquetes = ed.trierEnquetesParNom();
+            case 2:
+                return enquetes = ed.trierEnquetesParDate();
+            default:
+                return enquetes;
+        }
+    }
+
 
 
 }

@@ -33,9 +33,10 @@
         <c:if test="${partenaire.enqueteInternet == null}">
             <tr>
                 <td>
-                    <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}" required="required"/>
+                    <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}"
+                           required="required" id="${partenaire.idPartenaire}"/>
+                    <label for="${partenaire.idPartenaire}">${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</label>
                 </td>
-                <td>${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</td>
                 <br>
             </tr>
         </c:if>

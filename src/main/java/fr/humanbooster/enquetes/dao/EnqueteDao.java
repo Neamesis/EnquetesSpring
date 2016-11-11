@@ -15,4 +15,8 @@ public interface EnqueteDao {
     public List<Enquete> recupererEnquetes();
 
     public EnqueteInternet recupererEnqueteParId(int idEnquete);
+
+    public List<Enquete> trierEnquetesParNom();
+
+    public List<Enquete> trierEnquetesParDate();
 }

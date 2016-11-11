@@ -15,7 +15,7 @@ public interface EnqueteService {
 
     public int creerEnqueteInt(String name, Date dateUtil);
 
-    public List<Enquete> recupererEnquetes();
-
     public EnqueteInternet recupererEnqueteIntParId(int idEnquete);
+
+    public List<Enquete> recupererEnquetesTriees(int orderBy);
 }
