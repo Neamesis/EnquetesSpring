@@ -13,7 +13,6 @@
 <div class="container">
     <jsp:include page="header.jsp"/>
     <br>
-    <br>
     <p>Nombre d'enquêtes : ${enquetes.size()}</p>
 
     <br>
