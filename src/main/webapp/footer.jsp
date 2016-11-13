@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-    <title>EnquÃªtes</title>
+    <title>Enquêtes</title>
     <meta charset="UTF-8">
 </head>
 
@@ -15,7 +15,7 @@
 <footer class="footer">
     <div class="container">
 
-        <p class="text-muted"> Application dÃ©veloppÃ©e par Julie Nguyen, dÃ©veloppeuse Java/JEE dÃ©butante. </p>
+        <p class="text-muted"> Application développée par Julie Nguyen, développeuse Java/JEE débutante. </p>
 
     </div>
 </footer>

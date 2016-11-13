@@ -1,7 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-    <title>Partenaires bien gÃ©nÃ©rÃ©s</title>
+    <title>Partenaires bien générés</title>
 </head>
 <body>
 
@@ -10,10 +10,10 @@
     <jsp:include page="header.jsp"/>
 
 
-    <h1 class="page-header">Une liste de partenaires a Ã©tÃ© gÃ©nÃ©rÃ©e !</h1>
+    <h1 class="page-header">Une liste de partenaires a été générée !</h1>
 
-    <a class="col-md-5 btn btn-primary" href="/EnquetesSpring/creerEnqueteInt">Retourner sur la crÃ©ation d'une enquÃªte internet...</a>
-    <a class="col-md-5 col-md-offset-2 btn btn-primary" href="/index">Retourner Ã  l'accueil...</a>
+    <a class="col-md-5 btn btn-primary" href="/EnquetesSpring/creerEnqueteInt">Retourner sur la création d'une enquête internet...</a>
+    <a class="col-md-5 col-md-offset-2 btn btn-primary" href="/index">Retourner à l'accueil...</a>
 </div>
 </body>
 </html>

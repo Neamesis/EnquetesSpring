@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-    <title>EnquÃªtes</title>
+    <title>Enquêtes</title>
     <link href="<c:url value="../${pageContext.request.contextPath}/resources/css/bootstrap.css"/>" rel="stylesheet">
     <meta charset="UTF-8">
 </head>
@@ -11,7 +11,7 @@
 <div class="container">
     <jsp:include page="header.jsp"/>
     <br>
-    <p class="text-muted">Nombre d'enquÃªtes : ${enquetes.size()}</p>
+    <p class="text-muted">Nombre d'enquêtes : ${enquetes.size()}</p>
 
     <br>
     <div class="container-fluid">
@@ -35,7 +35,7 @@
                         </ul>
                         <br>
                         <a href="ajoutPartEnquInt?id=${enquete.idEnquete}" >
-                            Ajouter un partenaire Ã  l'enquÃªte nÂ°${enquete.idEnquete}
+                            Ajouter un partenaire à l'enquête n°${enquete.idEnquete}
                         </a>
                     </c:if>
                     <br><br>
