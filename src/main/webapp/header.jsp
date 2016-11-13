@@ -13,7 +13,7 @@
 
 <body>
 <div class="masthead">
-    <h3 class="text-muted">Enquêtes de réponses</h3>
+    <h1 class="text-muted">Enquêtes de réponses</h1>
     <nav>
         <ul class="nav nav-justified">
             <li class="nav-item" role="button">

@@ -13,35 +13,46 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Ajouter un partenaire à une enquête</h1>
 
-<form:form method="POST" modelAttribute="partenaire" action="ajoutPartEnquInt">
-    <input type="hidden" value="${enqueteInternet.idEnquete}" name="ID_ENQUETE"/>
-    <p>id enquête : ${enqueteInternet.idEnquete}</p>
-    <label>
-        <p>Choisissez un partenaire à ajouter à votre enquête :</p>
-        <p>(Attention, vous ne pouvez choisir qu'un partenaire à la fois)</p>
-    </label>
-    <br>
-    <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
-        <c:if test="${partenaire.enqueteInternet == null}">
-            <tr>
-                <td>
-                    <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}" required="required"/>
-                </td>
-                <td>${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</td>
-                <br>
-            </tr>
-        </c:if>
-    </c:forEach>
-    <br>
-    <p>Votre partenaire ne se trouve pas dans la liste ?
-        <a href="/EnquetesSpring/creerPartenaire"> Ajouter un partenaire</a>
-    </p>
-    <br>
-    <input type="submit" value="Valider" class="button"/>
-</form:form>
+<div class="container">
+    <jsp:include page="header.jsp"/>
+
+    <h1 class="page-header">Ajouter un partenaire à l'enquête : ${enqueteInternet.name}</h1>
 
 
+    <form:form method="POST" modelAttribute="partenaire" action="ajoutPartEnquInt">
+    <form>
+        <input type="hidden" value="${enqueteInternet.idEnquete}" name="ID_ENQUETE"/>
+        <p>Numéro de l'enquête : ${enqueteInternet.idEnquete}</p>
+        <p>Partenaire(s) actuel(s) de l'enquête : </p>
+        <c:forEach items="${enqueteInternet.partenaires}" var="partenaire">
+            <li>
+                    ${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})
+            </li>
+        </c:forEach>
+
+        <br>
+        <label>
+            <p>Choisissez un partenaire à ajouter à votre enquête :</p>
+            <p>(Attention, vous ne pouvez choisir qu'un partenaire à la fois)</p>
+        </label>
+        <br>
+        <select class="form-control" name="ID_PARTENAIRE">
+            <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
+                <c:if test="${partenaire.enqueteInternet == null}">
+                    <option value="${partenaire.idPartenaire}" required="required" id="${partenaire.idPartenaire}">
+                            ${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})
+                    </option>
+                </c:if>
+            </c:forEach>
+        </select>
+        <br>
+        <p>Votre partenaire ne se trouve pas dans la liste ?
+            <a href="/EnquetesSpring/creerPartenaire"> Ajouter un partenaire</a>
+        </p>
+        <br>
+        <input type="submit" value="Valider" class="btn btn-danger"/>
+    </form>
+    </form:form>
 </body>
 </html>

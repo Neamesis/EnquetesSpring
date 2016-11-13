@@ -38,20 +38,17 @@
                 <p>Choisissez un partenaire à ajouter à votre enquête : (Attention, vous ne pouvez choisir qu'un partenaire à la fois)</p>
             </label>
             <br>
-            <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
-                <c:if test="${partenaire.enqueteInternet == null}">
-                    <tr>
-                        <td>
-                            <input type="radio" name="ID_PARTENAIRE" value="${partenaire.idPartenaire}"
-                                   required="required" id="${partenaire.idPartenaire}"/>
-                            <label for="${partenaire.idPartenaire}">${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})</label>
-                        </td>
-                        <br>
-                    </tr>
-                </c:if>
-            </c:forEach>
-                <%--    <form:checkboxes items="${partenaires}" path="partenaires" itemLabel="namePartenaire"
-                                     delimiter="<br/>" itemValue="idPartenaire"/>--%>
+
+            <select class="form-control" name="ID_PARTENAIRE">
+                <c:forEach items="${partenaires}" var="partenaire" varStatus="status">
+                    <c:if test="${partenaire.enqueteInternet == null}">
+                        <option value="${partenaire.idPartenaire}" required="required" id="${partenaire.idPartenaire}">
+                                ${partenaire.namePartenaire} (${partenaire.siteWebPartenaire})
+                        </option>
+                    </c:if>
+                </c:forEach>
+            </select>
+
             <br>
             <p>Votre partenaire ne se trouve pas dans la liste ?
                 <a href="/EnquetesSpring/creerPartenaire"> Ajouter un partenaire</a>
@@ -62,7 +59,5 @@
     </form:form>
 
 </div>
-
-<jsp:include page="footer.jsp"/>
 </body>
 </html>
