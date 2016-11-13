@@ -1,6 +1,8 @@
 package fr.humanbooster.enquetes.controller;
 
+import fr.humanbooster.enquetes.business.Enquete;
 import fr.humanbooster.enquetes.business.Partenaire;
+import fr.humanbooster.enquetes.service.EnqueteService;
 import fr.humanbooster.enquetes.service.PartenaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
+import static fr.humanbooster.enquetes.controller.EnquetesControleur.TRI_PAR_DEFAUT;
+
 /**
  * Created by Nea on 05/11/2016.
  */
@@ -23,7 +27,11 @@ public class PartenairesControleur {
     private PartenaireService partenaireService;
 
     @Autowired
+    private EnqueteService enqueteService;
+
+    @Autowired
     private HttpSession hSession;
+
 
     @RequestMapping(value = "/genererPartenaires", method = RequestMethod.GET)
     public String creerPartenaires(){
@@ -41,12 +49,15 @@ public class PartenairesControleur {
     }
 
     @RequestMapping(value = "creerPartenaire", method = RequestMethod.POST)
-    public String creerPartenairePost(@ModelAttribute("partenaire") Partenaire partenaire) {
+    public ModelAndView creerPartenairePost(@ModelAttribute("partenaire") Partenaire partenaire) {
         System.out.println("ModelAttribute récupéré : " + partenaire);
         String namePartenaire = partenaire.getNamePartenaire();
         String siteWeb = partenaire.getSiteWebPartenaire();
         partenaireService.creerPartenaire(namePartenaire, siteWeb);
-        return "index";
+        ModelAndView mav = new ModelAndView("index");
+        List<Enquete> enquetes = enqueteService.recupererEnquetesTriees(EnquetesControleur.TRI_PAR_DEFAUT);
+        mav.addObject("enquetes", enquetes);
+        return mav;
     }
 
 }
